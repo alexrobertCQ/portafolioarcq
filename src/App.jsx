@@ -56,9 +56,13 @@ function App() {
           Contacto
         </a>
         {showLightBeam && <div className="light-beam"></div>}
-        <button className="button-projects animate-button" onClick={() => setCount((count) => count + 1)}> {/* Añade la clase animate-button */}
+        <a 
+        className="button-projects animate-button" 
+        href='https://pf-arts-client.vercel.app/'
+        target='_blank'
+        rel="noopener noreferrer"> 
           Proyectos
-        </button>
+        </a>
       </div>
       <div className="card animate-button">
         <button onClick={() => setCount((count) => count + 1)}>
