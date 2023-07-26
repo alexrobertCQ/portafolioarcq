@@ -3,33 +3,37 @@ import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
+  const [showLightBeam, setShowLightBeam] = useState(false);
 
   useEffect(() => {
-    const container = document.querySelector(".container");
-
     const handleMove = (e) => {
-      const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-      const clientY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+      const isButtonWithAnimation = e.target.closest('.animate-button');
+      if (!isButtonWithAnimation) {
+        const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+        const clientY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
 
-      const streak = document.createElement("div");
-      streak.classList.add("streak");
-      streak.style.left = clientX + "px";
-      streak.style.top = clientY + "px";
+        const streak = document.createElement('div');
+        streak.classList.add('streak');
+        streak.style.left = clientX + 'px';
+        streak.style.top = clientY + 'px';
 
-      container.appendChild(streak);
+        document.body.appendChild(streak);
 
-      // Eliminar la estela después de cierto tiempo para evitar que se acumulen
-      setTimeout(() => {
-        container.removeChild(streak);
-      }, 500);
+        setShowLightBeam(true);
+
+        setTimeout(() => {
+          document.body.removeChild(streak);
+          setShowLightBeam(false);
+        }, 1000);
+      }
     };
 
-    document.addEventListener("mousemove", handleMove);
-    document.addEventListener("touchmove", handleMove);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('touchmove', handleMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMove);
-      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('touchmove', handleMove);
     };
   }, []);
 
@@ -39,21 +43,27 @@ function App() {
         <h1 className="animated-heading">Alex Robert Calapuja Quispe</h1>
       </div>
       <h2>Desarrollador web Full Stack Developer</h2>
-      <p className='container-Descript'> Hola! Soy un desarrolador Full Stack Developer con experiencia en JavaScript, React Js, Node Js, Express, SQL y otras tecnologías relacionadas. Me especializo en el desarrollo de aplicaciones web y disfruto creando soluciones eficientes y de alto rendimiento.</p>
+      <p className="container-Descript">
+        Hola! Soy un desarrolador Full Stack Developer con experiencia en JavaScript, React Js, Node Js, Express, SQL y otras tecnologías relacionadas. Me especializo en el desarrollo de aplicaciones web y disfruto creando soluciones eficientes y de alto rendimiento.
+      </p>
       <div className="enlaces">
-        <a className="button-contact" href="https://www.linkedin.com/in/alex-robert-calapuja-quispe/" target="_blank" rel="noopener noreferrer">
+        <a
+          className="button-contact animate-button" // Añade la clase animate-button
+          href="https://www.linkedin.com/in/alex-robert-calapuja-quispe/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Contacto
         </a>
-        <button className="button-projects">Proyectos</button>
+        {showLightBeam && <div className="light-beam"></div>}
+        <button className="button-projects animate-button" onClick={() => setCount((count) => count + 1)}> {/* Añade la clase animate-button */}
+          Proyectos
+        </button>
       </div>
-      <div className="card">
+      <div className="card animate-button">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-      </div>
-      <div className="container">
-        {/* Este div será el haz de luz que seguirá el movimiento del mouse */}
-        <div className="light-beam" id="light"></div>
       </div>
     </>
   );

@@ -16,7 +16,7 @@
   /* Nuevos estilos para la estela */
   opacity: 0;
   transform-origin: center;
-  transition: opacity 0.1s ease, transform 0.1s ease;
+  transition: opacity 5s ease, transform 5s ease;
 }
 
 .streak {
@@ -39,6 +39,11 @@
   100% {
     opacity: 0;
     transform: scale(3) rotate(360deg);
+  }
+}
+@media (pointer: fine) {
+  .light-beam {
+    display: none;
   }
 }
 .enlaces {
@@ -70,7 +75,7 @@
   margin-left: 10px;
 }
 .animated-heading {
-  background-image: linear-gradient(45deg, #f06, #00f, #0f6, #f06);
+  background-image: linear-gradient(45deg, #f06, rgb(0, 247, 255), #0f6, #f06);
   background-size: 400% 400%;
   animation: gradientAnimation 10s ease infinite;
   -webkit-background-clip: text; /* Propiedad específica para aplicar el gradiente al texto */
