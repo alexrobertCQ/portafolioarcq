@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const container = document.querySelector(".container");
+
+    const handleMouseMove = (e) => {
+      const streak = document.createElement("div");
+      streak.classList.add("streak");
+      streak.style.left = e.clientX + "px";
+      streak.style.top = e.clientY + "px";
+
+
+      container.appendChild(streak);
+
+      // Eliminar la estela después de cierto tiempo para evitar que se acumulen
+      setTimeout(() => {
+        container.removeChild(streak);
+      }, 500);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1 className="animated-heading">Alex Robert Calapuja Quispe</h1>
       </div>
-      <h1>Vite + React</h1>
+      <h2>Desarrollador web Full Stack Developer</h2>
+      <p className='container-Descript'> Hola! Soy un desarrolador Full Stack Developer con experiencia en JavaScript, React Js, Node Js, Express, SQL y otras tecnologías relacionadas. Me especializo en el desarrollo de aplicaciones web y disfruto creando soluciones eficientes y de alto rendimiento.</p>
+      <div className="enlaces">
+      <a className="button-contact" href="https://www.linkedin.com/in/alex-robert-calapuja-quispe/" target="_blank" rel="noopener noreferrer">
+          Contacto
+        </a>
+        <button className="button-projects">Proyectos</button>
+      </div>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="container">
+      {/* Este div será el haz de luz que seguirá el movimiento del mouse */}
+      <div className="light-beam" id="light"></div>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
