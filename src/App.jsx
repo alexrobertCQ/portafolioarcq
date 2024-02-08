@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
   const [showLightBeam, setShowLightBeam] = useState(false);
 
   useEffect(() => {
@@ -63,11 +62,6 @@ function App() {
         rel="noopener noreferrer"> 
           Proyectos
         </a>
-      </div>
-      <div className="card animate-button">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
       </div>
     </>
   );
