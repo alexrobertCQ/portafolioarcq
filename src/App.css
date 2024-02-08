@@ -48,6 +48,9 @@
 }
 .enlaces {
   margin: 10px 0; /* Agrega 20px de espacio vertical entre los botones */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .button-contact{
@@ -83,6 +86,9 @@
   cursor: pointer;
   transition: border-color 0.25s;
   color: white;
+}
+.button-contact, .button-projects {
+  margin: 0 5px; /* Espacio entre los botones */
 }
 .button-projects:hover{
   border-color: #646cff;
