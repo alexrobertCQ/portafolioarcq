@@ -11,12 +11,12 @@
 
 .light-beam {
   /* ... otros estilos ... */
-  display: absolute; /* Asegúrate de que el haz de luz esté visible */
+  display: absolute; /*el haz de luz esté visible */
 
   /* Nuevos estilos para la estela */
   opacity: 0;
   transform-origin: center;
-  transition: opacity 5s ease, transform 5s ease;
+  transition: opacity 5s ease, transform 8s ease;
 }
 
 .streak {
@@ -24,10 +24,10 @@
   position: absolute;
   width: 10px;
   height: 2px;
-  background-color:#00FF00; /* Color neon (en este caso, rosa neon) */
+  background-color:#00FF00; /* Color neon */
   transform-origin: center;
   opacity: 0;
-  animation: streakAnimation 1s linear;
+  animation: streakAnimation 0.8s linear;
 }
 
 /* Nueva animación para la estela */
